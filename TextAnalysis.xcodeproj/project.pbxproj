@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		846445E518D7434D00939978 /* TMTNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 846445E418D7434D00939978 /* TMTNode.m */; };
 		84EA633E18D1DFFC00110F31 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84EA633D18D1DFFC00110F31 /* Cocoa.framework */; };
 		84EA634818D1DFFC00110F31 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84EA634618D1DFFC00110F31 /* InfoPlist.strings */; };
 		84EA634A18D1DFFC00110F31 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EA634918D1DFFC00110F31 /* main.m */; };
@@ -18,6 +19,7 @@
 		84EA635E18D1DFFC00110F31 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84EA633D18D1DFFC00110F31 /* Cocoa.framework */; };
 		84EA636618D1DFFC00110F31 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84EA636418D1DFFC00110F31 /* InfoPlist.strings */; };
 		84EA636818D1DFFC00110F31 /* TextAnalysisTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EA636718D1DFFC00110F31 /* TextAnalysisTests.m */; };
+		84EA63B618D203E300110F31 /* TMTText.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EA63B518D203E300110F31 /* TMTText.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		846445E318D7434D00939978 /* TMTNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTNode.h; sourceTree = "<group>"; };
+		846445E418D7434D00939978 /* TMTNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTNode.m; sourceTree = "<group>"; };
 		84EA633A18D1DFFC00110F31 /* TextAnalysis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextAnalysis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84EA633D18D1DFFC00110F31 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		84EA634018D1DFFC00110F31 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -50,6 +54,8 @@
 		84EA636318D1DFFC00110F31 /* TextAnalysisTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TextAnalysisTests-Info.plist"; sourceTree = "<group>"; };
 		84EA636518D1DFFC00110F31 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		84EA636718D1DFFC00110F31 /* TextAnalysisTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextAnalysisTests.m; sourceTree = "<group>"; };
+		84EA63B418D203E300110F31 /* TMTText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTText.h; sourceTree = "<group>"; };
+		84EA63B518D203E300110F31 /* TMTText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTText.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +124,10 @@
 				84EA634F18D1DFFC00110F31 /* TMTAppDelegate.h */,
 				84EA635018D1DFFC00110F31 /* TMTAppDelegate.m */,
 				84EA635218D1DFFC00110F31 /* MainMenu.xib */,
+				84EA63B418D203E300110F31 /* TMTText.h */,
+				84EA63B518D203E300110F31 /* TMTText.m */,
+				846445E318D7434D00939978 /* TMTNode.h */,
+				846445E418D7434D00939978 /* TMTNode.m */,
 				84EA635518D1DFFC00110F31 /* Images.xcassets */,
 				84EA634418D1DFFC00110F31 /* Supporting Files */,
 			);
@@ -254,7 +264,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				84EA635118D1DFFC00110F31 /* TMTAppDelegate.m in Sources */,
+				84EA63B618D203E300110F31 /* TMTText.m in Sources */,
 				84EA634A18D1DFFC00110F31 /* main.m in Sources */,
+				846445E518D7434D00939978 /* TMTNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +400,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TextAnalysis/TextAnalysis-Prefix.pch";
 				INFOPLIST_FILE = "TextAnalysis/TextAnalysis-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -401,6 +414,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TextAnalysis/TextAnalysis-Prefix.pch";
 				INFOPLIST_FILE = "TextAnalysis/TextAnalysis-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -465,6 +479,7 @@
 				84EA636D18D1DFFC00110F31 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		84EA636E18D1DFFC00110F31 /* Build configuration list for PBXNativeTarget "TextAnalysisTests" */ = {
 			isa = XCConfigurationList;
@@ -473,6 +488,7 @@
 				84EA637018D1DFFC00110F31 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
