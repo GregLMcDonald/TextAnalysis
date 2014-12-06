@@ -20,9 +20,12 @@
 @property NSMutableArray *decomposedText;
 @property NSMutableSet *unsortedUniqueWords;
 
+@property NSSet *charactersUsed;
+
 
 -(id)init;
 -(void)identifyUniqueWords;
+-(void)buildSetOfCharactersUsedInWords;
 -(void)decomposeText;
 -(void)computeWordFrequency;
 -(void)buildTree;

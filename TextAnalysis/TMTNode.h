@@ -14,6 +14,7 @@
 @property NSNumber *occurrences;
 @property NSNumber *frequency;
 @property NSMutableDictionary *tree;
+@property NSDictionary *archivedTree;
 
 -(id)init;
 -(id)initWithName:(NSString *)aName;
