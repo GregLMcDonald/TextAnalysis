@@ -17,7 +17,6 @@
         _frequency = [[NSNumber alloc] initWithFloat:0.0];
         _occurrences = [[NSNumber alloc] initWithLong:1];
         _tree = [[NSMutableDictionary alloc] init];
-
     }
     return self;
 }
@@ -70,13 +69,10 @@
 }
 
 - (void) encodeWithCoder:(NSCoder *)aCoder{
-    self.archivedTree = [NSDictionary dictionaryWithDictionary:self.tree];
     [aCoder encodeObject:self.name forKey:@"TMTNodeName"];
     [aCoder encodeObject:self.occurrences forKey:@"TMTNodeOccurrences"];
     [aCoder encodeObject:self.frequency forKey:@"TMTNodeFrequency"];
-    //[aCoder encodeObject:self.tree forKey:@"TMTNodeTree"];
-    [aCoder encodeObject:self.archivedTree forKey:@"TMTNodeArchivedTree"];
-    self.archivedTree = nil;
+    [aCoder encodeObject:self.tree forKey:@"TMTNodeTree"];
 }
 
 - (id) initWithCoder:(NSCoder *)aDecoder{
@@ -85,8 +81,7 @@
         _name = [aDecoder decodeObjectForKey:@"TMTNodeName"];
         _occurrences = [aDecoder decodeObjectForKey:@"TMTNodeOccurrences"];
         _frequency = [aDecoder decodeObjectForKey:@"TMTNodeFrequency"];
-        _archivedTree = [aDecoder decodeObjectForKey:@"TMTNodeArchivedTree"];
-        _tree = [NSMutableDictionary dictionaryWithDictionary:_archivedTree];
+        _tree = [aDecoder decodeObjectForKey:@"TMTNodeTree"];
     }
     return self;
 }

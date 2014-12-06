@@ -191,9 +191,6 @@
     NSLog(@"Identifying unique words...");
     [self.text identifyUniqueWords];
     
-    NSLog(@"Identifying characters used in words...");
-    [self.text buildSetOfCharactersUsedInWords];
-    
     //  NSLog(@"Computing Word Frequency...");
     //  [self.text computeWordFrequency];
 

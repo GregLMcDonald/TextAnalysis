@@ -13,9 +13,7 @@
 
 @end
 
-@implementation TMTText{
-    NSCharacterSet* goodCharacters;
-}
+@implementation TMTText
 
 
 -(id)init{
@@ -26,8 +24,6 @@
         _unsortedUniqueWords = [[NSMutableSet alloc] init];
         _wordFrequency = [[NSMutableDictionary alloc] init];
         _root = [[TMTNode alloc] initWithName:@""];
-        _charactersUsed = [[NSSet alloc] init];
-        self->goodCharacters = [NSCharacterSet lowercaseLetterCharacterSet];
     }
     return self;
 }
@@ -43,7 +39,6 @@
     [aCoder encodeObject:self.root forKey:@"TMTTextRoot"];
     [aCoder encodeObject:self.decomposedText forKey:@"TMTTextDecomposedText"];
     [aCoder encodeObject:self.unsortedUniqueWords forKey:@"TMTTextUnsortedUniqueWords"];
-    [aCoder encodeObject:self.charactersUsed forKey:@"TMTTextCharactersUsed"];
 }
 
 - (id) initWithCoder:(NSCoder *)aDecoder{
@@ -56,7 +51,6 @@
         _root = [aDecoder decodeObjectForKey:@"TMTTextRoot"];
         _decomposedText = [aDecoder decodeObjectForKey:@"TMTTextDecomposedText"];
         _unsortedUniqueWords = [aDecoder decodeObjectForKey:@"TMTTextUnsortedUniqueWords"];
-        _charactersUsed = [aDecoder decodeObjectForKey:@"TMTTextCharactersUsed"];
     }
     return self;
 }
@@ -100,16 +94,13 @@
 
 -(void)identifyUniqueWords{
     
-    
     //Go through the list of tokens and check to set if each token is already in the set
     //of words.  If it is not (this is the first occurrance), add it to the set.
-//    [self.decomposedText enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//        if ([self.unsortedUniqueWords containsObject:obj] == NO ){
-//            [self.unsortedUniqueWords addObject:obj];
-//        }
-//    }];
-    
-    self.unsortedUniqueWords = [NSMutableSet setWithArray:self.decomposedText];
+    [self.decomposedText enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if ([self.unsortedUniqueWords containsObject:obj] == NO ){
+            [self.unsortedUniqueWords addObject:obj];
+        }
+    }];
     
     //Make an array from the resulting set and then store the sorted array as the list of
     //unique words.
@@ -120,6 +111,7 @@
     NSLog(@"Number of unique tokens:  %lu", (unsigned long)[self.uniqueWords count]);
     
 }
+
 
 -(void)computeWordFrequency{
    int wordOccurances = 0;
@@ -210,33 +202,20 @@
     //
     // Building/traversing the tree is done recursively.
 
-
+    //unichar singleLetter [1];
+    
     //Loop over the list of unique words
     for (int i=0; i < [self.uniqueWords count]; i++){
         
         NSString *word = [NSString stringWithString:self.uniqueWords[i]];
-       
-        
-        
-        
-        //To produce tree where root node can be letters occuring anywhere in words
-        // NSLog(@"      for word %i of %lu: %@  (recursive)", i+1, [self.uniqueWords count], word);
-        //while (![word  isEqual: @""]) {
-        //    word = [self checkTree:self.root forString:word];
-        //}
-        
-        //To produce tree where root node are only first letters
-        // NSLog(@"      for word %i of %lu: %@  (non-recursive build)", i+1, [self.uniqueWords count], word);
-        [self checkTree:self.root forString:word];
-        
-        
-        
-        
+        NSLog(@"Building tree for word %i of %lu: %@", i+1, [self.uniqueWords count], word);
+        while (![word  isEqual: @""]) {
+            word = [self checkTree:self.root forString:word];
+        }
     }
     
     //Traverse the tree and normalize
     [self.root normalizeTree];
-    NSLog(@"Tree build done");
     
 }
 
@@ -337,31 +316,6 @@
     } else {
         return [NSNumber numberWithFloat:comboProb];
     }
-}
-
-
-
--(void)buildSetOfCharactersUsedInWords{
-    
-    NSMutableSet* tempCharactersUsed = [NSMutableSet new];
-    
-    for (NSString* aWord in self.uniqueWords){
-        //split word into charcters
-    
-        unichar aBuffer[1];
-        for (int i=0; i<[aWord length]; i++ ){
-            NSString* aLetter = [aWord substringWithRange:NSMakeRange(i, 1)];
-            [aLetter getCharacters:aBuffer range:NSMakeRange(0, 1)];
-            if ([self->goodCharacters characterIsMember:aBuffer[0]]  && ![tempCharactersUsed member:aLetter]){
-                [tempCharactersUsed addObject:aLetter];
-            }
-        }
-    }
-    
-    self.charactersUsed = [NSSet setWithSet:tempCharactersUsed];
-    
-    NSLog(@"character set built");
-    
 }
 
 
