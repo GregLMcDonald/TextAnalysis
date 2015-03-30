@@ -209,9 +209,10 @@
         
         NSString *word = [NSString stringWithString:self.uniqueWords[i]];
         NSLog(@"Building tree for word %i of %lu: %@", i+1, [self.uniqueWords count], word);
-        while (![word  isEqual: @""]) {
-            word = [self checkTree:self.root forString:word];
-        }
+        //while (![word  isEqual: @""]) {
+        //    word = [self checkTree:self.root forString:word];
+        //}
+        [self checkTree:self.root forString:word];
     }
     
     //Traverse the tree and normalize
